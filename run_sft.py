@@ -39,8 +39,8 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         args.pretrained_model_name_or_path,
         attn_implementation="flash_attention_2",
-        device_map="auto",
-        torch_dtype="auto"
+        device_map="cpu",
+        dtype="auto"
     )
 
     # Initialize the SFT config
@@ -60,6 +60,7 @@ def main():
         learning_rate=2e-5,
         eval_strategy="no",
         save_steps=50,
+        torch_empty_cache_steps=50,
     )
 
 
