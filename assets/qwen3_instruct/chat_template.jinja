@@ -25,7 +25,6 @@
     {%- elif message.role == "assistant" %}
         {# --- 변경 시작: Header는 Generation 블록 바깥에 위치 --- #}
         {{- '<|im_start|>' + message.role + '\n' -}}
-        {# --- Generation 블록 시작 (여기부터 Loss 계산) --- #}
         {%- generation -%}
             {{- content -}}
             {%- if message.tool_calls %}
@@ -49,7 +48,6 @@
             {%- endif %}
             {{- '<|im_end|>\n' -}}
         {%- endgeneration -%}
-        {# --- Generation 블록 끝 --- #}
     {%- elif message.role == "tool" %}
         {%- if loop.first or (messages[loop.index0 - 1].role != "tool") %}
             {{- '<|im_start|>user' }}
