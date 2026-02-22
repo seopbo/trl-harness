@@ -50,7 +50,7 @@ python prepare_sft-dataset.py
 # A100 80GB x 8
 # global_batch_size=128
 export WANDB_PROJECT=sft
-CUDA_VISIBLE_DEVICES=0,1,2,3,5,6,7,8 accelerate launch --config_file accelerate_configs/multi_gpu.yaml \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch --config_file accelerate_configs/multi_gpu.yaml \
     --main_process_port 8000 \
     run_sft.py \
     --use_wandb_logging \
