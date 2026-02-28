@@ -1,0 +1,15 @@
+{
+  "arena-hard": {
+    "pass@1": {
+      "num_entries": 500,
+      "score": 12.29,
+      "95_CI": [
+        -1.28,
+        1.71
+      ],
+      "invalid_scores": 0,
+      "avg_tokens": 534,
+      "gen_seconds": 43120
+    }
+  }
+}

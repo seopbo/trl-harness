@@ -1,0 +1,11 @@
+{
+  "hendrycks_math": {
+    "pass@1": {
+      "num_entries": 5000,
+      "avg_tokens": 424,
+      "gen_seconds": 170,
+      "symbolic_correct": 45.06,
+      "no_answer": 45.44
+    }
+  }
+}
