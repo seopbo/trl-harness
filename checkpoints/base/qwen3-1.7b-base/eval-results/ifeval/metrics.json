@@ -3,14 +3,14 @@
     "pass@1": {
       "num_prompts": 541,
       "num_instructions": 834,
-      "average_score": 31.359293341666778,
-      "prompt_strict_accuracy": 23.65988909426987,
-      "instruction_strict_accuracy": 36.810551558753,
-      "prompt_loose_accuracy": 25.87800369685767,
-      "instruction_loose_accuracy": 39.08872901678657,
+      "average_score": 31.022076977974,
+      "prompt_strict_accuracy": 23.10536044362292,
+      "instruction_strict_accuracy": 36.69064748201439,
+      "prompt_loose_accuracy": 25.32347504621072,
+      "instruction_loose_accuracy": 38.968824940047966,
       "num_entries": 541,
-      "avg_tokens": 717,
-      "gen_seconds": 24
+      "avg_tokens": 1403,
+      "gen_seconds": 91
     }
   }
 }
