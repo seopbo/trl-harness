@@ -4,7 +4,7 @@ from pathlib import Path
 from argparse import ArgumentParser
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.trainer_callback import TrainerCallback
-from datasets import load_dataset, concatenate_datasets
+from datasets import load_dataset
 from trl import SFTTrainer, SFTConfig
 
 
@@ -16,25 +16,25 @@ class TokenizerSaveCallback(TrainerCallback):
 
 def get_main_args():
     parser = ArgumentParser()
-    parser.add_argument("--pretrained_model_name_or_path", type=str, default="checkpoints/base/qwen3-1.7b-base")
+    parser.add_argument("--pretrained_model_name_or_path", type=str, default="checkpoints/base/qwen2.5-1.5b")
     parser.add_argument("--chat_template_path", type=str, default="assets/qwen3_instruct/chat_template.jinja")
     parser.add_argument("--use_wandb_logging", action="store_true")
     parser.add_argument("--data_dirpath", type=str, default="datasets/sft")
-    parser.add_argument("--output_dirpath", type=str, default="checkpoints/sft/qwen3-1.7b-tulu3-subsets")
+    parser.add_argument("--output_dirpath", type=str, default="checkpoints/sft/qwen2.5-1.5b")
     parser.add_argument("--resume_from_checkpoint", action="store_true")
     parser.add_argument("--save_strategy", type=str, choices=["epoch", "steps"], default="steps")
     parser.add_argument("--save_total_limit", type=int, default=5)
-    parser.add_argument("--save_steps", type=int, default=100)
-    parser.add_argument("--torch_empty_cache_steps", type=int, default=100)
+    parser.add_argument("--save_steps", type=int, default=50)
+    parser.add_argument("--torch_empty_cache_steps", type=int, default=50)
     parser.add_argument("--no_save_only_model", action="store_false", dest="save_only_model")
-    parser.add_argument("--num_train_epochs", type=int, default=3)
-    parser.add_argument("--per_device_train_batch_size", type=int, default=2)
+    parser.add_argument("--num_train_epochs", type=int, default=1)
+    parser.add_argument("--per_device_train_batch_size", type=int, default=4)
     parser.add_argument("--gradient_accumulation_steps", type=int, default=8)
     parser.add_argument("--max_length", type=int, default=8192)
-    parser.add_argument("--weight_decay", type=float, default=0.1)
+    parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--learning_rate", type=float, default=3e-5)
-    parser.add_argument("--warmup_ratio", type=float, default=0.03)
-    parser.add_argument("--lr_scheduler_type", type=str, choices=["linear", "cosine"], default="cosine")
+    parser.add_argument("--warmup_ratio", type=float, default=0.1)
+    parser.add_argument("--lr_scheduler_type", type=str, choices=["linear", "cosine", "constant", "constant_with_warmup"], default="cosine")
     args = parser.parse_args()
     return args
 
